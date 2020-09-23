@@ -1,0 +1,12 @@
+/*
+retrieve mongoURI from https://cloud.mongodb.com/v2/5f1f68e1838abc0e10543bcb#clusters/connect?clusterId=DevConnector
+->connect->connect your application->mongodb+srv***************************************************************************
+*/
+{
+    "mongoURI": "",
+    "jwtSecret": "mysecrettoken",
+    "githubClientId": "d8aedbb0bf67f51960ad",
+    "githubSecret": "acac68ac60f8fe3c722a7d432b41bec27e7acd61"
+}
+
+}
