@@ -1,0 +1,13 @@
+frontend dependencies
+npm i axios react-router-dom redux react-redux redux-thunk redux-devtools-exte
+nsion moment react-moment
+axios - for http requests m(can use fetch api but using specific axios functions i.e global functions)
+react-router-dom
+redux
+react-redux
+redux-thunk - middleware allowing to make async requests for actions
+redux-devtools-extension - 
+moment - date and time library to format date and time
+react-moment - to use moment within a component
+
+rm -rf .git to delete folder completely 
