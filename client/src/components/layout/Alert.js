@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 //check if array is null or if 0
 //using only 1 expression
 const Alert = ({ alerts }) =>
+    //check to see if it has anything
     alerts !== null && alerts.length > 0 && alerts.map(alert => (
         //whenever maping through an array and output jsx you need a key
         <div key={alert.id} className={`alert alert-${alert.alertType}`}>

@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';//when importing, must export at
 import { setAlert } from '../../actions/alert';
 import PropTypes from 'prop-types'
+import { register } from '../../actions/auth';
 
 
 //import axios from 'axios';
 //can use props because of export default connect(null, { setAlert }
 //const Register = (props) => { destructured props to use setAlert instead of prop.setAlert
-const Register = ({setAlert}) => {
+const Register = ({setAlert, register}) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -31,7 +32,9 @@ const Register = ({setAlert}) => {
       
       //console.log('Passwords do not match');
     } else {
-      console.log('success');
+      //from actions/auth.js
+      console.log(name, email, password);
+      register({name, email, password});
       //////////////below happens in redux action, so no need to happen in component
       //example of how it works in request
       // //have access to form data
@@ -67,14 +70,15 @@ const Register = ({setAlert}) => {
       <p className="lead">
         <i className="fas fa-user" /> Create Your Account
       </p>
-      <form className="form" onSubmit={onSubmit}>
+      <form className="form" onSubmit={e=>onSubmit(e)}>
         <div className="form-group">
           <input
             type="text"
             placeholder="Name"
             name="name"
             value={name}
-            onChange={onChange}
+            onChange={e => onChange(e)}
+            required
           />
         </div>
         <div className="form-group">
@@ -83,7 +87,7 @@ const Register = ({setAlert}) => {
             placeholder="Email Address"
             name="email"
             value={email}
-            onChange={onChange}
+            onChange={e=>onChange(e)}
           />
           <small className="form-text">
             This site uses Gravatar so if you want a profile image, use a
@@ -96,7 +100,8 @@ const Register = ({setAlert}) => {
             placeholder="Password"
             name="password"
             value={password}
-            onChange={onChange}
+            onChange={e => onChange(e)}
+            minLength='6'
           />
         </div>
         <div className="form-group">
@@ -105,7 +110,8 @@ const Register = ({setAlert}) => {
             placeholder="Confirm Password"
             name="password2"
             value={password2}
-            onChange={onChange}
+            onChange={e=>onChange(e)}
+            minLength='6'
           />
         </div>
         <input type="submit" className="btn btn-primary" value="Register" />
@@ -119,8 +125,9 @@ const Register = ({setAlert}) => {
 
 
 Register.prototypes = {
-  setAlert: PropTypes.func.isRequired
+  setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired
 }
 //put connect() and put Register in parenthesis
 //null, { setAlert } allows to use props.setAlert
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);
