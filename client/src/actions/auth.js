@@ -4,10 +4,31 @@ import {
     REGISTER_SUCCESS,
     REGISTER_FAIL,
     USER_LOADED,
-    AUTH_ERROR
+    AUTH_ERROR,
+    LOGIN_SUCCESS,
+    LOGIN_FAIL,
+    LOGOUT
 } from './types';
+import setAuthToken from '../utils/setAuthToken';
 
 //load user
+export const loadUser = () => async dispatch => {
+    if (localStorage.token) {
+        setAuthToken(localStorage.token);
+    }
+
+    try {
+        const res = await axios.get('/api/auth');
+        dispatch({
+            type: USER_LOADED,
+            payload: res.data
+        })
+    } catch (error) {
+        dispatch({
+            type: AUTH_ERROR
+        })
+    }
+}
 
 //register user
 export const register = ({ name, email, password }) => async dispatch => {
@@ -26,6 +47,7 @@ export const register = ({ name, email, password }) => async dispatch => {
             type: REGISTER_SUCCESS,
             payload: res.data
         });
+        dispatch(loadUser());
     } catch (err) {
         //looping through errors, using to get body errors 
         const errors = err.response.data.errors;
@@ -38,4 +60,44 @@ export const register = ({ name, email, password }) => async dispatch => {
             type: REGISTER_FAIL
         });
     }
+}
+
+
+//login user
+export const login = ( email, password ) => async dispatch => {
+    const config = {
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    }
+
+    const body = JSON.stringify({ email, password });
+    
+    //making post req, use api/auth
+    try {
+        const res = await axios.post('./api/auth', body, config);
+
+        dispatch({
+            type: LOGIN_SUCCESS,
+            payload: res.data
+        });
+
+        dispatch(loadUser());
+    } catch (err) {
+        //looping through errors, using to get body errors 
+        const errors = err.response.data.errors;
+        if (errors) {
+            errors.forEach(error=>dispatch(setAlert(error.msg, 'danger')));
+        }
+
+
+        dispatch({
+            type: LOGIN_FAIL
+        });
+    }
+}
+
+//logout, clears profile
+export const logout = () => dispatch => {
+    dispatch({ type: LOGOUT });
 }
