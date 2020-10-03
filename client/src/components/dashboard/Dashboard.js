@@ -4,11 +4,12 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
+import DashboardActions from './DashboardActions';
 
 const Dashboard = ({ getCurrentProfile, auth: {user}, profile: {profile, loading} }) => {
     useEffect(() => {
         getCurrentProfile();
-        console.log("profile loaded")
+        //console.log("profile loaded")
     }, []);
 
 
@@ -20,17 +21,18 @@ const Dashboard = ({ getCurrentProfile, auth: {user}, profile: {profile, loading
             <i className="fas fa-user" /> Welcome {user && user.name}
           </p>
           {profile !== null ? (
-                <Fragment>
-                    profile here
-              {/* <DashboardActions />
-              <Experience experience={profile.experience} />
-              <Education education={profile.education} />
+            <Fragment>
+                profile here
+                <DashboardActions />
+                {/* 
+                <Experience experience={profile.experience} />
+                <Education education={profile.education} />
     
-              <div className="my-2">
-                <button className="btn btn-danger" onClick={() => deleteAccount()}>
-                  <i className="fas fa-user-minus" /> Delete My Account
-                </button>
-              </div> */}
+                <div className="my-2">
+                    <button className="btn btn-danger" onClick={() => deleteAccount()}>
+                    <i className="fas fa-user-minus" /> Delete My Account
+                    </button>
+                </div> */}
             </Fragment>
           ) : (
             <Fragment>
