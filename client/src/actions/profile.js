@@ -3,10 +3,12 @@ import { setAlert } from './alert';
 
 import {
     GET_PROFILE,
+    GET_PROFILES,
     UPDATE_PROFILE,
     PROFILE_ERROR,
     ACCOUNT_DELETED,
-    CLEAR_PROFILE
+    CLEAR_PROFILE,
+    GET_REPOS
 } from './types';
 
 //get current user profile, want to get api/profile/me from backend
@@ -16,6 +18,60 @@ export const getCurrentProfile = () => async dispatch => {
         //console.log('getcurrentprofile')
         dispatch({
             type: GET_PROFILE,
+            payload: res.data
+        });
+    } catch (error) {
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status }
+        });
+    }
+}
+
+//get all profiles
+export const getProfiles = () => async dispatch => {
+    dispatch({ type: CLEAR_PROFILE });//stops flashing of past profiles
+    try {
+        const res = await axios.get('/api/profile');
+        //console.log('getcurrentprofile')
+        dispatch({
+            type: GET_PROFILES,
+            payload: res.data
+        });
+    } catch (error) {
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status }
+        });
+    }
+}
+
+
+//get profile by id
+export const getProfileById = userId => async dispatch => {
+    
+    try {
+        const res = await axios.get(`/api/profile/user/${userId}`);
+        //console.log('getcurrentprofile')
+        dispatch({
+            type: GET_PROFILE,
+            payload: res.data
+        });
+    } catch (error) {
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status }
+        });
+    }
+}
+
+//get github repo
+export const getGithubRepos = username => async dispatch => {
+    try {
+        const res = await axios.get(`/api/profile/github/${username}`);
+        
+        dispatch({
+            type: GET_REPOS,
             payload: res.data
         });
     } catch (error) {
