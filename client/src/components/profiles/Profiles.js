@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import Spinner from '../layout/Spinner';
 import ProfileItem from './ProfileItem';
 import {getProfiles} from '../../actions/profile';
-import profile from '../../reducers/profile';
+//import profile from '../../reducers/profile';
 
 const Profiles = ({
     getProfiles,
@@ -12,7 +12,7 @@ const Profiles = ({
 }) => {
     useEffect(() => {
         getProfiles();
-    }, []);
+    }, [getProfiles]);//[getProfiles] run as dependency
     return <Fragment>
         {loading ? <Spinner /> :
             <Fragment>

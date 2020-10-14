@@ -1,3 +1,5 @@
+npm run dev
+
 frontend dependencies
 npm i axios react-router-dom redux react-redux redux-thunk redux-devtools-exte
 nsion moment react-moment
@@ -9,5 +11,10 @@ redux-thunk - middleware allowing to make async requests for actions
 redux-devtools-extension - 
 moment - date and time library to format date and time
 react-moment - to use moment within a component
+//////////////////
+npm i uuid in /client
 
 rm -rf .git to delete folder completely 
+
+ redux is a state manager, used for larger applications, using reducers in this project
+ reducer decides what to do with the state, ie deleting a post or updating a profile +

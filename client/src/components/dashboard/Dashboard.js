@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { getCurrentProfile, deleteAccount } from '../../actions/profile';
-import Spinner from '../layout/Spinner';
+//import Spinner from '../layout/Spinner';
 import DashboardActions from './DashboardActions';
 import Experience from './Experience';
 import Education from './Education';
@@ -17,7 +17,7 @@ const Dashboard = ({
     useEffect(() => {
         getCurrentProfile();
         //console.log("profile loaded")
-    }, []);
+    }, [getCurrentProfile]);
 
 
 

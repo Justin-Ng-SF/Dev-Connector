@@ -30,6 +30,7 @@ const ProfileItem = ({
                 </Link>
             </div>
             <ul>
+                {/*only want first 4 skills, return index as a key for li */}
                 {skills.slice(0, 4).map((skill, index) => (
                     <li key={index} className="text-primary">
                         <i className="fas fa-check" /> {skill}
