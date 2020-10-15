@@ -22,6 +22,10 @@ export const getCurrentProfile = () => async dispatch => {
             payload: res.data
         });
     } catch (error) {
+        //makes sure previous userprofile cannot be seen by next user logging in
+        dispatch({
+            type: CLEAR_PROFILE
+        })
         dispatch({
             type: PROFILE_ERROR,
             payload: { msg: error.response.statusText, status: error.response.status }
