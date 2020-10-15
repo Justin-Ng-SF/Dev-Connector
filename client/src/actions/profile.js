@@ -8,7 +8,8 @@ import {
     PROFILE_ERROR,
     ACCOUNT_DELETED,
     CLEAR_PROFILE,
-    GET_REPOS
+    GET_REPOS,
+    NO_REPOS
 } from './types';
 
 //get current user profile, want to get api/profile/me from backend
@@ -68,6 +69,7 @@ export const getProfileById = userId => async dispatch => {
 //get github repo
 export const getGithubRepos = username => async dispatch => {
     try {
+        console.log('getgithubrepoaction')
         const res = await axios.get(`/api/profile/github/${username}`);
         
         dispatch({
@@ -75,9 +77,9 @@ export const getGithubRepos = username => async dispatch => {
             payload: res.data
         });
     } catch (error) {
+        console.log(error)
         dispatch({
-            type: PROFILE_ERROR,
-            payload: { msg: error.response.statusText, status: error.response.status }
+            type: NO_REPOS
         });
     }
 }
