@@ -102,22 +102,15 @@ router.post('/',
                 );
                 return res.json(profile);
             }
-
             //create
             profile = new Profile(profileFields);
 
             await profile.save();
             res.json(profile);
-
-
         } catch (err) {
             console.error(err.message);
             res.status(500).send('Server Error');
         }
-
-        
-
-
     }
 );
 
@@ -167,10 +160,8 @@ router.delete('/', auth,  async (req, res) => {
         //remove user posts
         await Post.deleteMany({ user: req.user.id });
         //remove profile
-        console.log(164)
         await Profile.findOneAndRemove({ user: req.user.id });
         await User.findOneAndRemove({ _id: req.user.id });
-        console.log(167)
         res.json({msg: 'User deleted'});
     } catch (err) {
         console.error(err.message);
@@ -386,7 +377,6 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
 // @desc     Get user repos from Github
 // @access   Public
 router.get('/github/:username', async (req, res) => {
-    console.log
     try {
       const uri = encodeURI(
         `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc`
