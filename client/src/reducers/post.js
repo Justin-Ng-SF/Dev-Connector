@@ -1,6 +1,5 @@
 import {
     GET_POSTS,
-    GET_PROFILE,
     POST_ERROR,
     UPDATE_LIKES,
     DELETE_POST,

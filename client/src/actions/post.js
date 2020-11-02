@@ -3,7 +3,6 @@ import { setAlert } from './alert';
 import {
     GET_POSTS,
     POST_ERROR,
-    UPDATE_PROFILE,
     UPDATE_LIKES,
     DELETE_POST,
     ADD_POST,
@@ -67,7 +66,7 @@ export const removeLike = id => async dispatch => {
 //remove post
 export const deletePost = id => async dispatch => {
     try {
-        const res = await axios.delete(`/api/posts/${id}`);
+        await axios.delete(`/api/posts/${id}`);
 
         dispatch({
             type: DELETE_POST,
@@ -157,14 +156,14 @@ export const addComment = (postId, formData) => async dispatch => {
 //delete comment
 
 export const deleteComment = (postId, commentId) => async dispatch => {
-    const config = {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }
+    // const config = {
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     }
+    // }
 
     try {
-        const res = await axios.pdeleteost(`/post/comment/${postId}/${commentId}`);
+        await axios.pdeleteost(`/post/comment/${postId}/${commentId}`);
 
         dispatch({
             type: REMOVE_COMMENT,

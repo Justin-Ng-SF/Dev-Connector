@@ -10,6 +10,7 @@ import CommentItem from '../post/CommentItem';
 
 const Post = ({ getPost, post: { post, loading }, match }) => {
     useEffect(() => {
+        //getPost(match.params.id);
         getPost(match.params.id);
     }, [getPost]);
 
@@ -27,11 +28,6 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
             </div>
         </Fragment>
     
-    return (
-        <div>
-            posatr
-        </div>
-    )
 }
 
 Post.propTypes = {
