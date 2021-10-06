@@ -1,13 +1,15 @@
-# Social Network Application
+##Live demo here.
+This web application serves as a platform for developers to connect and share their work by creating a public portfolio. Registered users can:
+- Display their work experience and educational background
+- Share/post personal sites, LinkedIn profile, GitHub repos, and various mainstream social media application profiles
+- Comment on and 'like' user posts
 
-### Live demo [here](https://shrouded-retreat-86257.herokuapp.com/).
-
-This application allows users to connect with one another by displaying their work experience and educational background and posting to a public wall. Users can display personal sites, LinkedIn profile, github repos, and various mainstream social media application profiles. Users can also comment on each others post and even like them. A list of all users are displayed for anyone to view while a list of all posts are allowed for only registered users to view. 
-
-# List of Technologies used
-## Frontend
+A page listing all existing users is also available for any user to view.
+##What technologies does this app use?
+###Frontend
 React/Redux, Axios
-## Backend
+###Backend
 Axios, bcrypt, JWT, Express/Validator, Mongoose
-## Other
+
+###Other
 Heroku
